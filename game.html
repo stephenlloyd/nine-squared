@@ -1,0 +1,215 @@
+
+<style media="screen">
+
+
+  .grid {
+  display: flex;                       /* establish flex container */
+  flex-wrap: wrap;                     /* enable flex items to wrap */
+  justify-content: space-around;
+  width: 315px;
+  background-color: #d6d6d6;
+}
+.cell {
+  flex: 0 0 32%;
+  width: 50px;                    /* don't grow, don't shrink, width */
+  height: 100px;
+  margin-bottom: 5px;
+  background-color: #d6d6d6;
+}
+
+.top-left--green {
+  background-image: url("images/top-left-green.png");
+  background-size: cover;
+}
+.top-middle--green {
+  background-image: url("images/top-middle-green.png");
+  background-size: cover;
+}
+.top-right--green {
+  background-image: url("images/top-right-green.png");
+  background-size: cover;
+}
+.middle-left--green {
+  background-image: url("images/middle-left-green.png");
+  background-size: cover;
+}
+.middle-middle--green {
+  background-image: url("images/middle-middle-green.png");
+  background-size: cover;
+}
+.middle-right--green {
+  background-image: url("images/middle-right-green.png");
+  background-size: cover;
+}
+.bottom-left--green {
+  background-image: url("images/bottom-left-green.png");
+  background-size: cover;
+}
+.bottom-middle--green {
+  background-image: url("images/bottom-middle-green.png");
+  background-size: cover;
+}
+.bottom-right--green {
+  background-image: url("images/bottom-right-green.png");
+  background-size: cover;
+}
+
+.top-left--red {
+  background-image: url("images/top-left-red.png");
+  background-size: cover;
+}
+.top-middle--red {
+  background-image: url("images/top-middle-red.png");
+  background-size: cover;
+}
+.top-right--red {
+  background-image: url("images/top-right-red.png");
+  background-size: cover;
+}
+.middle-left--red {
+  background-image: url("images/middle-left-red.png");
+  background-size: cover;
+}
+.middle-middle--red {
+  background-image: url("images/middle-middle-red.png");
+  background-size: cover;
+}
+.middle-right--red {
+  background-image: url("images/middle-right-red.png");
+  background-size: cover;
+}
+.bottom-left--red {
+  background-image: url("images/bottom-left-red.png");
+  background-size: cover;
+}
+.bottom-middle--red {
+  background-image: url("images/bottom-middle-red.png");
+  background-size: cover;
+}
+.bottom-right--red {
+  background-image: url("images/bottom-right-red.png");
+  background-size: cover;
+}
+
+.content {
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+/* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  background-color: #d6d6d6;
+}
+
+h1,h2,button {
+    text-align:center;
+}
+
+*{
+  background-color: #d6d6d6;
+  }
+</style>
+
+<div class="content">
+
+<h1>Nine Squared<h1>
+<h2 class="moves-count">Moves: 0<h2>
+  <h2 class="best-score">Best Score: -<h2>
+
+<div class="grid">
+  <div id="cell0" class="cell top-left--green" data-box="0"></div>
+  <div id="cell1" class="cell top-middle--green" data-box="1"></div>
+  <div id="cell2" class="cell top-right--green" data-box="2"></div>
+  <div id="cell3" class="cell middle-left--green" data-box="3"></div>
+  <div id="cell4" class="cell middle-middle--green" data-box="4"></div>
+  <div id="cell5" class="cell middle-right--green" data-box="5"></div>
+  <div id="cell6" class="cell bottom-left--green" data-box="6"></div>
+  <div id="cell7" class="cell bottom-middle--green" data-box="7"></div>
+  <div id="cell8" class="cell bottom-right--green" data-box="8"></div>
+</div>
+<button class="reset">Reset</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="src/NineSquared.js"></script>
+
+
+<script>
+  $( document ).ready(function() {
+    var game = new NineSquared;
+
+    game.start()
+
+  function setBoard() {
+    for (i = 0; i < game.grid.length; i++) {
+      var colour = game.grid[i] === "O" ? "green" : "red"
+      var element = document.getElementById("cell" + i);
+      if(i === 0){
+        element.classList.remove("top-left--red");
+        element.classList.remove("top-left--green");
+        element.classList.add("top-left--" + colour );
+      };
+      if(i === 1){
+        element.classList.remove("top-middle--red");
+        element.classList.remove("top-middle--green");
+        element.classList.add("top-middle--" + colour );
+      }
+      if(i === 2){
+        element.classList.remove("top-right--red");
+        element.classList.remove("top-right--green");
+        element.classList.add("top-right--" + colour );
+      }
+      if(i === 3){
+        element.classList.remove("middle-left--red");
+        element.classList.remove("middle-left--green");
+        element.classList.add("middle-left--" + colour );
+      }
+      if(i === 4){
+        element.classList.remove("middle-middle--red");
+        element.classList.remove("middle-middle--green");
+        element.classList.add("middle-middle--" + colour );
+      }
+      if(i === 5){
+        element.classList.remove("middle-right--red");
+        element.classList.remove("middle-right--green");
+        element.classList.add("middle-right--" + colour );
+      }
+      if(i === 6){
+        element.classList.remove("bottom-left--red");
+        element.classList.remove("bottom-left--green");
+        element.classList.add("bottom-left--" + colour );
+      }
+      if(i === 7){
+        element.classList.remove("bottom-middle--red");
+        element.classList.remove("bottom-middle--green");
+        element.classList.add("bottom-middle--" + colour );
+      }
+      if(i === 8){
+        element.classList.remove("bottom-right--red");
+        element.classList.remove("bottom-right--green");
+        element.classList.add("bottom-right--" + colour );
+      }
+    }
+  }
+
+  setBoard()
+
+    $( ".cell" ).click(function() {
+        game.go(parseInt(this.dataset.box))
+        setBoard();
+        $('.moves-count').text('Moves: ' + game.moveCount)
+
+        if(game.isOver()){
+          $('.best-score').text('BestScore: ' + game.bestScore)
+          alert("Yay!!!")
+        }
+    });
+
+    $( ".reset" ).click(function() {
+      game.reset()
+      setBoard();
+    });
+  });
+
+
+</script>
