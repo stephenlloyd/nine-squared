@@ -83,6 +83,7 @@ NineSquared.prototype.move = function(position) {
   if(this.isOver()){
     if(this.bestScore > this.moveCount){
       this.bestScore = this.moveCount
+      this.moveCount = 0;
     }
   }
   }
